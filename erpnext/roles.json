@@ -1,0 +1,16 @@
+[
+  {
+    "doctype": "Role",
+    "role_name": "E-commerce Integration",
+    "desk_access": 0,
+    "two_factor_auth": 0,
+    "description": "Website backend API user only. Read, create and update E-commerce User. Assign to the dedicated website API user, never to people."
+  },
+  {
+    "doctype": "Role",
+    "role_name": "E-commerce Registry Manager",
+    "desk_access": 1,
+    "two_factor_auth": 0,
+    "description": "Staff who may view, report on and export website customer accounts (read only)."
+  }
+]

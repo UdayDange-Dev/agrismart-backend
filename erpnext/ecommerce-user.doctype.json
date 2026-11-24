@@ -1,0 +1,113 @@
+{
+  "doctype": "DocType",
+  "name": "E-commerce User",
+  "module": "Setup",
+  "custom": 1,
+  "istable": 0,
+  "issingle": 0,
+  "editable_grid": 0,
+  "track_changes": 0,
+  "allow_rename": 0,
+  "autoname": "naming_series:",
+  "naming_rule": "By \"Naming Series\" field",
+  "title_field": "customer_name",
+  "search_fields": "customer_name,email,mobile",
+  "sort_field": "registration_date",
+  "sort_order": "DESC",
+  "description": "Website (storefront) customer accounts with a confirmed email, synchronised one way from the Agrismart website backend. Authentication stays on the website: no passwords, password hashes, tokens or session data are stored here. This file mirrors the DocType that already exists on the production site (checked read-only on 2026-10-27); the setup script never changes an existing DocType.",
+  "fields": [
+    {
+      "fieldname": "naming_series",
+      "label": "Series",
+      "fieldtype": "Select",
+      "options": "ECU-.YYYY.-.#####",
+      "default": "ECU-.YYYY.-.#####"
+    },
+    {
+      "fieldname": "customer_name",
+      "label": "Customer Name",
+      "fieldtype": "Data",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "email",
+      "label": "Email",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "description": "Lower-case, as used to sign in on the website. The website matches records by this field until it has linked the record by name."
+    },
+    {
+      "fieldname": "mobile",
+      "label": "Mobile",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "registration_date",
+      "label": "Registration Date",
+      "fieldtype": "Date",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "email_verified",
+      "label": "Email Verified",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "account_status",
+      "label": "Account Status",
+      "fieldtype": "Select",
+      "options": "\nActive\nInactive\nSuspended",
+      "in_list_view": 1,
+      "in_standard_filter": 1
+    },
+    {
+      "fieldname": "last_login",
+      "label": "Last Login",
+      "fieldtype": "Datetime"
+    },
+    {
+      "fieldname": "last_activity",
+      "label": "Last Activity",
+      "fieldtype": "Datetime",
+      "description": "Last meaningful action on the website (sign-in, order, inquiry, email confirmation, account change). Updated at most every 10 minutes; browsing is not counted."
+    }
+  ],
+  "permissions": [
+    {
+      "role": "E-commerce Integration",
+      "permlevel": 0,
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "report": 0,
+      "export": 0,
+      "import": 0,
+      "share": 0,
+      "print": 0,
+      "email": 0
+    },
+    {
+      "role": "E-commerce Registry Manager",
+      "permlevel": 0,
+      "read": 1,
+      "write": 0,
+      "create": 0,
+      "delete": 0,
+      "submit": 0,
+      "cancel": 0,
+      "amend": 0,
+      "report": 1,
+      "export": 1,
+      "import": 0,
+      "share": 0,
+      "print": 1,
+      "email": 0
+    }
+  ]
+}

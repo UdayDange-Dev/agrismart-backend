@@ -1,0 +1,62 @@
+{
+  "name": "agrismart-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agrismart storefront API (Express + TypeScript + MongoDB + ERPNext)",
+  "type": "module",
+  "main": "dist/server.js",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node --disable-proto=delete dist/server.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:registry-e2e": "vitest run test/registry.e2e.test.ts",
+    "create-admin": "node dist/scripts/createAdmin.js",
+    "erpnext:verify": "node dist/scripts/verifyErpnext.js",
+    "dev:mock": "tsx test/devStack.ts",
+    "dev:erp": "tsx test/devStack.ts --real-erp",
+    "dev:erp:smtp": "tsx test/devStack.ts --real-erp --smtp",
+    "mail:check": "node dist/scripts/mailCheck.js",
+    "erpnext:setup-user-registry": "node dist/scripts/setupUserRegistry.js",
+    "user-registry": "node dist/scripts/userRegistry.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0",
+    "libphonenumber-js": "^1.13.15",
+    "mongoose": "^9.11.4",
+    "nodemailer": "^10.0.16",
+    "pino": "^10.4.0",
+    "pino-http": "^11.0.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.5",
+    "@types/nodemailer": "^8.0.2",
+    "@types/smtp-server": "^3.5.13",
+    "@types/supertest": "^7.2.1",
+    "eslint": "^10.12.0",
+    "mongodb-memory-server": "^11.3.0",
+    "smtp-server": "^3.19.18",
+    "supertest": "^7.3.1",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.71.1",
+    "vitest": "^5.0.3"
+  }
+}

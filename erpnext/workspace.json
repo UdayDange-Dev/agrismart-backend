@@ -1,0 +1,27 @@
+{
+  "doctype": "Workspace",
+  "name": "E-commerce Users",
+  "label": "E-commerce Users",
+  "title": "E-commerce Users",
+  "module": "Selling",
+  "public": 1,
+  "is_hidden": 0,
+  "icon": "users",
+  "sequence_id": 50,
+  "roles": [{ "role": "E-commerce Registry Manager" }],
+  "number_cards": [
+    { "number_card_name": "E-commerce Users: Registered", "label": "Registered users" },
+    { "number_card_name": "E-commerce Users: Active Accounts", "label": "Active accounts" },
+    { "number_card_name": "E-commerce Users: Inactive Accounts", "label": "Inactive accounts" },
+    { "number_card_name": "E-commerce Users: Suspended Accounts", "label": "Suspended accounts" },
+    { "number_card_name": "E-commerce Users: Email Verified", "label": "Email verified" },
+    { "number_card_name": "E-commerce Users: New (7 days)", "label": "New in the last 7 days" },
+    { "number_card_name": "E-commerce Users: New (30 days)", "label": "New in the last 30 days" },
+    { "number_card_name": "E-commerce Users: Active Users (30 days)", "label": "Active users, last 30 days" }
+  ],
+  "shortcuts": [
+    { "type": "DocType", "link_to": "E-commerce User", "label": "E-commerce User", "doc_view": "List" },
+    { "type": "DocType", "link_to": "E-commerce User", "label": "Suspended accounts", "doc_view": "List", "stats_filter": "[[\"E-commerce User\",\"account_status\",\"=\",\"Suspended\",false]]" }
+  ],
+  "content": "[{\"id\":\"ecu-h1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Website customer accounts</b></span>\",\"col\":12}},{\"id\":\"ecu-p1\",\"type\":\"paragraph\",\"data\":{\"text\":\"Synchronised from the Agrismart website. <b>Active users</b> means a sign-in, order, inquiry or account change in the last 30 days (today included), whatever the account status. <b>Active accounts</b> means the account is allowed to sign in.\",\"col\":12}},{\"id\":\"ecu-n1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"E-commerce Users: Registered\",\"col\":3}},{\"id\":\"ecu-n2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"E-commerce Users: Active Accounts\",\"col\":3}},{\"id\":\"ecu-n3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"E-commerce Users: Suspended Accounts\",\"col\":3}},{\"id\":\"ecu-n4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"E-commerce Users: Inactive Accounts\",\"col\":3}},{\"id\":\"ecu-n5\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"E-commerce Users: Email Verified\",\"col\":3}},{\"id\":\"ecu-n6\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"E-commerce Users: New (7 days)\",\"col\":3}},{\"id\":\"ecu-n7\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"E-commerce Users: New (30 days)\",\"col\":3}},{\"id\":\"ecu-n8\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"E-commerce Users: Active Users (30 days)\",\"col\":3}},{\"id\":\"ecu-s1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"E-commerce User\",\"col\":3}},{\"id\":\"ecu-s2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Suspended accounts\",\"col\":3}}]"
+}

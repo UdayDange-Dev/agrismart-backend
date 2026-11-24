@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+
+# Environment files (secrets): only the example is committed
+.env
+.env.*
+!.env.example
+
+# Keys, certificates and credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*credentials*.json
+service-account*.json
+
+# Build output
+dist/
+coverage/
+*.tsbuildinfo
+*.map
+
+# Logs, local databases and dumps (may contain customer data)
+logs/
+*.log
+npm-debug.log*
+.tmp-dev/
+.tmp/
+*.sqlite
+*.db
+dump/
+backups/
+*.archive
+*.bson
+*.gz
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Test tool caches
+.vitest/

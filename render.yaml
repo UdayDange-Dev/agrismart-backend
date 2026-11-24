@@ -1,0 +1,80 @@
+# Render Blueprint for the Agrismart API (https://render.com/docs/blueprint-spec).
+#
+# Review before applying. Every secret is `sync: false`: Render asks for the value when the
+# Blueprint is created, and it is never stored in Git. Use TEST credentials (test MongoDB
+# database/user, test ERPNext site with a least-privilege API user) for a test deployment.
+#
+# The API is meant to be reached ONLY through the frontend's Vercel rewrite (/api/* -> this
+# service). Requests without the ORIGIN_SHARED_SECRET header are refused (except health probes).
+services:
+  - type: web
+    name: agrismart-backend
+    runtime: node
+    # Rate limits and the catalogue cache are per process: keep exactly one instance.
+    numInstances: 1
+    # NODE_ENV=production makes `npm ci` skip devDependencies, but TypeScript is needed to build.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health/ready
+    envVars:
+      # --- Runtime (non-secret) ---
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      # PORT is provided by Render.
+      - key: TRUST_PROXY
+        value: "0"
+      - key: LOG_LEVEL
+        value: info
+      - key: NODE_VERSION
+        value: "22"
+
+      # --- Storefront origin (the Vercel production domain, https, bare origin) ---
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: APP_PUBLIC_URL
+        sync: false
+      # Same value as ORIGIN_SECRET in the Vercel project. 32+ chars, e.g.
+      # node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+      - key: ORIGIN_SHARED_SECRET
+        sync: false
+
+      # --- MongoDB Atlas (test cluster/database + dedicated readWrite user) ---
+      - key: MONGODB_URI
+        sync: false
+
+      # --- ERPNext: a SEPARATE TEST SITE and a dedicated least-privilege API user ---
+      - key: ERPNEXT_BASE_URL
+        sync: false
+      - key: ERPNEXT_ALLOWED_HOSTS
+        sync: false
+      - key: ERPNEXT_API_KEY
+        sync: false
+      - key: ERPNEXT_API_SECRET
+        sync: false
+      - key: ERPNEXT_PRICE_LIST
+        sync: false
+      # Writes stay off until the test site is verified (`npm run erpnext:verify` in the Render
+      # shell). To enable Lead sync on the TEST site, set ERPNEXT_LEAD_SYNC=true and
+      # ERPNEXT_WRITE_APPROVED_HOST=<exact test-site hostname>.
+      - key: ERPNEXT_LEAD_SYNC
+        value: "false"
+      - key: ERPNEXT_USER_SYNC
+        value: "false"
+      - key: ERPNEXT_WRITE_APPROVED_HOST
+        sync: false
+
+      # --- Email (required in production: verification and password-reset links) ---
+      - key: MAIL_FROM
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_SECURE
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
